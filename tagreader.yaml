@@ -2,9 +2,6 @@ substitutions:
   name: tagreader
   friendly_name: TagReader
 
-packages:
-  adonno.tag_reader: github://adonno/tagreader/tagreader.yaml
-
 # Enable the captive portal for inital WiFi setup
 captive_portal:
 
