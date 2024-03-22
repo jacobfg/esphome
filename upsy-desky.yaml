@@ -1,6 +1,7 @@
 substitutions:
   name: upsy-desky
   friendly_name: Upsy Desky
+  default_height_units: "cm"
   standing_desk_min_height: "60.0"
   standing_desk_max_height: "125.0"
   standing_desk_height_units: "cm"
@@ -11,8 +12,11 @@ packages:
   tj_horner.upsy_desky: github://tjhorner/upsy-desky/firmware/stock.yaml@v2.0.0
 
 # disable bluetooth tracking
+esp32_ble: !remove
+esp32_ble_server: !remove
 esp32_ble_tracker: !remove
 bluetooth_proxy: !remove
+dashboard_import: !remove
 
 esphome:
   name: ${name}
