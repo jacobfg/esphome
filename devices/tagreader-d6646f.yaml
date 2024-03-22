@@ -1,0 +1,13 @@
+packages:
+  jacobfg.tagreader: github://jacobfg/esphome/tagreader.yaml@devel
+
+api:
+  encryption:
+    key: xxxxxxxxxxxxxxxxxxxxx
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+esphome:
+  friendly_name: Tag Reader Office

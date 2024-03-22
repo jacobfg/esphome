@@ -1,0 +1,13 @@
+packages:
+  jacobfg.tagreader: github://jacobfg/esphome/upsy-desky.yaml@devel
+
+api:
+  encryption:
+    key: 9yi5TxxZ0rylzPssHrJ2/VN1ZX7/Cx9FFQbRovtGUqU=
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+esphome:
+  friendly_name: Upsy Desky Office

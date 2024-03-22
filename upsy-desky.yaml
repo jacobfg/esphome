@@ -1,0 +1,87 @@
+substitutions:
+  name: upsy-desky
+  friendly_name: Upsy Desky
+  standing_desk_min_height: "60.0"
+  standing_desk_max_height: "125.0"
+  standing_desk_height_units: "cm"
+  standing_desk_sitting_height: "68.0"
+  standing_desk_standing_height: "100.8"
+
+packages:
+  tj_horner.upsy_desky: github://tjhorner/upsy-desky/firmware/stock.yaml@v2.0.0
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  name_add_mac_suffix: true
+  project:
+    name: tj_horner.upsy_desky
+    version: "2.0.0-jfg"
+
+number:
+  - platform: template
+    id: sitting_height
+    name: "Sitting Height"
+    entity_category: "config"
+    min_value: 0
+    max_value: 150
+    step: 0.1
+    optimistic: true
+    restore_value: true
+    initial_value: ${standing_desk_sitting_height}
+
+  - platform: template
+    id: standing_height
+    name: "Standing Height"
+    entity_category: "config"
+    min_value: 0
+    max_value: 150
+    step: 0.1
+    optimistic: true
+    restore_value: true
+    initial_value: ${standing_desk_standing_height}
+
+text_sensor:
+  - platform: template
+    id: height_status
+    name: "Height Setting"
+    icon: "mdi:desk"
+
+switch:
+  - platform: template
+    id: toggle_standing
+    name: "Toggle Standing"
+    icon: "mdi:desk"
+    turn_on_action:
+      - button.press: recall_preset_2
+    turn_off_action:
+      - button.press: recall_preset_1
+    # otherwise any reboot causes the desk to go to preset 1
+    restore_mode: DISABLED
+
+binary_sensor:
+  - platform: status
+    name: "Status"
+    entity_category: diagnostic
+
+sensor:
+  - id: !extend desk_height
+    on_value:
+      # not mm perfect - sometimes .1 out
+      # sadly te icon changes don't get updated in HA ;-()
+      lambda: !lambda |-
+        if ( (float(x) >= (float(id(sitting_height).state) - 0.2)) && ((float(id(sitting_height).state) + 0.2) >= float(x)) ) {
+          id(height_status).publish_state("Sitting");
+          id(toggle_standing).publish_state(false);
+          id(toggle_standing).set_icon("mdi:seat-recline-normal");
+        }
+        else if ( (float(x) >= (float(id(standing_height).state) - 0.2)) && ((float(id(standing_height).state) + 0.2) >= float(x)) ) {
+          id(height_status).publish_state("Standing");
+          id(toggle_standing).publish_state(true);
+          id(toggle_standing).set_icon("mdi:human-male");
+        }
+        else {
+          id(height_status).publish_state("Other");
+          id(toggle_standing).publish_state(false);
+          id(toggle_standing).set_icon("mdi:desk");
+        }
