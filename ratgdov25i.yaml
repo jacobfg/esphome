@@ -1,0 +1,21 @@
+substitutions:
+  name: ratgdov25i
+  friendly_name: Ratgdo
+
+packages:
+  ratgdo.esphome: github://ratgdo/esphome-ratgdo/v25iboard.yaml@main
+
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  name_add_mac_suffix: false
+  project:
+    version: "main-jfg"
+
+text_sensor:
+  - name: !remove version
+
+binary_sensor:
+  - platform: status
+    name: "Status"
+    entity_category: diagnostic
