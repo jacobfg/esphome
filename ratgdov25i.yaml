@@ -10,10 +10,7 @@ esphome:
   friendly_name: ${friendly_name}
   name_add_mac_suffix: false
   project:
-    version: "main-jfg"
-
-text_sensor:
-  - name: !remove version
+    version: "2.5i-jfg"
 
 binary_sensor:
   - platform: status
