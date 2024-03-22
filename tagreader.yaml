@@ -29,9 +29,6 @@ switch:
 - id: !extend buzzer_enabled
   restore_mode: ALWAYS_OFF
 
-logger:
-  level: WARN
-
 pn532_i2c:
   on_tag:
     then:
