@@ -1,13 +1,24 @@
+substitutions:
+  name: upsy-desky-76dc10
+  friendly_name: Upsy Desky Office
+
 packages:
-  jacobfg.tagreader: github://jacobfg/esphome/upsy-desky.yaml@devel
+  jacobfg.upsy-desky: github://jacobfg/esphome/upsy-desky.yaml@devel
 
 api:
   encryption:
-    key: 9yi5TxxZ0rylzPssHrJ2/VN1ZX7/Cx9FFQbRovtGUqU=
+    key: xxxxxxxxxxx
 
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_password
 
-esphome:
-  friendly_name: Upsy Desky Office
+# move below to common file ?
+# https://esphome.io/components/ota.html#updating-the-password
+ota:
+  safe_mode: true
+  password: !secret ota_password
+
+captive_portal: !remove
+web_server: !remove
+dashboard_import: !remove
