@@ -11,6 +11,10 @@ substitutions:
 packages:
   tj_horner.upsy_desky: github://tjhorner/upsy-desky/firmware/stock.yaml@v2.0.0
 
+# disable components we don't use
+esp32_ble_tracker: !remove
+bluetooth_proxy: !remove
+
 esphome:
   name: ${name}
   friendly_name: ${friendly_name}
