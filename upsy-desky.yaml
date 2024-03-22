@@ -91,6 +91,6 @@ sensor:
         }
         else {
           id(height_status).publish_state("Other");
-          id(toggle_standing).publish_state(false);
+          id(toggle_standing).publish_state(true);
           id(toggle_standing).set_icon("mdi:desk");
         }
