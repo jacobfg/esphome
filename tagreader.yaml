@@ -3,7 +3,7 @@ substitutions:
   friendly_name: Tag Reader
 
 packages:
-  adonno.tag_reader: github://adonno/tagreader/tagreader.yaml@a7e4048e9b754c2ba5a75a6bd23f52b3d76434ef
+  adonno.tag_reader: github://adonno/tagreader/tagreader.yaml
 
 esphome:
   project:
