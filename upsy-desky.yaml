@@ -13,7 +13,7 @@ packages:
 esphome:
   name: ${name}
   friendly_name: ${friendly_name}
-  name_add_mac_suffix: true
+  name_add_mac_suffix: false
   project:
     name: tj_horner.upsy_desky
     version: "2.0.0-jfg"
@@ -46,6 +46,10 @@ text_sensor:
     id: height_status
     name: "Height Setting"
     icon: "mdi:desk"
+
+light:
+  - id: !extend upsy_desky_status_led
+    restore_mode: RESTORE_DEFAULT_OFF
 
 switch:
   - platform: template
