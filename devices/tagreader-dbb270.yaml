@@ -1,6 +1,6 @@
 substitutions:
-  name: tagreader-d6646f
-  friendly_name: Tag Reader Office
+  name: tagreader-dbb270
+  friendly_name: Tag Reader Alice
 
 packages:
   jacobfg.tagreader: github://jacobfg/esphome/tagreader.yaml@devel

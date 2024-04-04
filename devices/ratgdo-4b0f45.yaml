@@ -1,0 +1,12 @@
+substitutions:
+  name: ratgdo-4b0f45
+  friendly_name: Ratgdo Garage
+
+packages:
+  jacobfg.upsy-desky: github://jacobfg/esphome/ratgdov25i.yaml@devel
+
+api:
+  encryption:
+    key: "hQuZi9pz/ZyM0SNIcfPOu+UWs9wY3AjIy0ecVCohbYU="
+
+<<: !include .wifi.yaml

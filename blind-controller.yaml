@@ -1,0 +1,195 @@
+
+  
+esphome:
+  name: ${name}
+  friendly_name: ${friendly_name}
+  name_add_mac_suffix: true
+  # package into cover component
+  includes:
+    - raex_blind_tx_orig.h
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+captive_portal:
+
+# Sync time with Home Assistant.
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+custom_component:
+  - lambda: |-
+      auto raex_blind_transmit = new RaexBlindTransmitComponent();
+      return {raex_blind_transmit};
+    # components:
+    # - id: my_custom_id
+
+binary_sensor:
+  - platform: status
+    name: "RF Cover Controller Status"
+
+# sensor:
+#   - platform: dht
+#     model: DHT22_TYPE2
+#     pin: D3
+#     temperature:
+#       name: "Temperature"
+#     humidity:
+#       name: "Humidity"
+#     update_interval: 60s
+
+text_sensor:
+  - platform: debug
+    device:
+      name: "Device Info"
+    reset_reason:
+      name: "Reset Reason"
+
+# sensor:
+#   - platform: debug
+#     free:
+#       name: "Heap Free"
+#     fragmentation:
+#       name: "Heap Fragmentation"
+#     block:
+#       name: "Heap Max Block"
+#     loop_time:
+#       name: "Loop Time"
+#     psram:
+#       name: "Free PSRAM"
+
+# remote_transmitter:
+#   pin: GPIO17
+#   # RF uses a 100% carrier signal
+#   carrier_duty_percent: 100%
+
+# button:
+#   - platform: template
+#     name: Guest Light
+#     id: guest_light
+#     # Optional variables:
+#     icon: "mdi:emoticon-outline"
+#     on_press:
+#       - logger.log: "Button guest light pressed"
+#       - remote_transmitter.transmit_byronsx:
+#           address: '0x000000BF'
+#           command: '0x0e'
+#           # command: '0x0f'
+#           repeat:
+#             times: 5
+
+#   - platform: template
+#     name: Guest Fan Off
+#     id: guest_fan_off
+#     # Optional variables:
+#     icon: "mdi:emoticon-outline"
+#     on_press:
+#       - logger.log: "Button guest fan off pressed"
+#       - remote_transmitter.transmit_byronsx:
+#           address: '0x000000FB'
+#           command: '0x0e'
+#           # command: '0x0f'
+#           repeat:
+#             times: 5
+
+#   - platform: template
+#     name: Guest Fan Low
+#     id: guest_fan_low
+#     # Optional variables:
+#     icon: "mdi:emoticon-outline"
+#     on_press:
+#       - logger.log: "Button guest fan low pressed"
+#       - remote_transmitter.transmit_byronsx:
+#           address: '0x0000007F'
+#           command: '0x0e'
+#           # command: '0x0f'
+#           repeat:
+#             times: 5
+
+#   - platform: template
+#     name: Guest Fan Medium
+#     id: guest_fan_medium
+#     # Optional variables:
+#     icon: "mdi:emoticon-outline"
+#     on_press:
+#       - logger.log: "Button guest fan medium pressed"
+#       - remote_transmitter.transmit_byronsx:
+#           address: '0x000000EF'
+#           command: '0x0e'
+#           # command: '0x0f'
+#           repeat:
+#             times: 5
+
+#   - platform: template
+#     name: Guest Fan High
+#     id: guest_fan_high
+#     # Optional variables:
+#     icon: "mdi:emoticon-outline"
+#     on_press:
+#       - logger.log: "Button guest fan high pressed"
+#       - remote_transmitter.transmit_byronsx:
+#           address: '0x000000F7'
+#           command: '0x0e'
+#           # command: '0x0f'
+#           repeat:
+#             times: 5
+
+# switch:
+#   - platform: template
+#     name: I-2-ON
+#     turn_on_action:
+#       - remote_transmitter.transmit_rc_switch_raw:
+#           # code: '10100110000001111011101000000000'
+#           code: '10101110000001111011101000000000'
+#           protocol: 2
+#           repeat: 3   
+#   - platform: template
+#     name: I-2-OFF
+#     turn_on_action:
+#       - remote_transmitter.transmit_rc_switch_raw:
+#           code: '10101110000001111011101000000000'
+#           protocol: 2
+#           repeat: 3
+#           # protocol:
+#           #   inverted: false
+#           #   pulse_length: 181
+#           # repeat:
+#           #   times: 10
+#           #   wait_time: 0s
+
+# switch:
+#   - platform: gpio
+#     id: onboard_led
+#     pin:
+#       number: GPIO2
+#       mode: OUTPUT
+#     restore_mode: ALWAYS_OFF
+
+  # - platform: gpio
+  #   name: "Test Button"
+  #   pin:
+  #     number: GPIO22
+  #     mode: INPUT_PULLUP
+  #     inverted: True
+  #   on_click:
+  #     then:
+  #       - switch.toggle: onboard_led
+
+switch:
+  - platform: gpio
+    name: ${name}-Onboard-LED
+    pin: GPIO2
+    inverted: True
+  - platform: restart
+    name: ${name}-restart
+    id: restart_switch
+
+sensor:
+  - platform: uptime
+    name: ${name}-Uptime Sensor
+  - platform: wifi_signal
+    name: ${name}-WiFi Signal
+    update_interval: 60s

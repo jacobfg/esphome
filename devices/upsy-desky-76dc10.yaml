@@ -9,16 +9,4 @@ api:
   encryption:
     key: ""
 
-wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_password
-
-# move below to common file ?
-# https://esphome.io/components/ota.html#updating-the-password
-ota:
-  safe_mode: true
-  password: !secret ota_password
-
-captive_portal: !remove
-web_server: !remove
-dashboard_import: !remove
+<<: !include .wifi.yaml
