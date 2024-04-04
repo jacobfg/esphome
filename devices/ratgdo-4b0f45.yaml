@@ -7,6 +7,6 @@ packages:
 
 api:
   encryption:
-    key: "hQuZi9pz/ZyM0SNIcfPOu+UWs9wY3AjIy0ecVCohbYU="
+    key: ""
 
 <<: !include .wifi.yaml

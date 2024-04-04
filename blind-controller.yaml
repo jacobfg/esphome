@@ -1,9 +1,7 @@
-
-  
 esphome:
   name: ${name}
   friendly_name: ${friendly_name}
-  name_add_mac_suffix: true
+  name_add_mac_suffix: false
   # package into cover component
   includes:
     - raex_blind_tx_orig.h

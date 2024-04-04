@@ -1,0 +1,19 @@
+substitutions:
+  name: blind-controller-b03cbc
+  friendly_name: Blind Controller
+
+packages:
+  jacobfg.tagreader: github://jacobfg/esphome/blind-controller.yaml@devel
+
+api:
+  encryption:
+    key: ""
+
+<<: !include .wifi.yaml
+
+logger:
+  level: debug
+
+debug:
+  update_interval: 5s
+
