@@ -4,14 +4,15 @@ esphome:
   name_add_mac_suffix: false
   # package into cover component
   includes:
-    - raex_blind_tx_orig.h
+    # - raex_blind_tx_orig.h
+    - raex_blind_tx_tweaked.h
 
 esp32:
   board: esp32dev
   framework:
     type: arduino
 
-captive_portal:
+# captive_portal:
 
 # Sync time with Home Assistant.
 time:
