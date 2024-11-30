@@ -9,14 +9,14 @@ substitutions:
   standing_desk_standing_height: "100.8"
 
 packages:
-  tj_horner.upsy_desky: github://tjhorner/upsy-desky/firmware/stock.yaml@v2.0.0
+  tj_horner.upsy_desky: github://tjhorner/upsy-desky/firmware/stock.yaml@v4.0.1
 
 esphome:
   name: ${name}
   friendly_name: ${friendly_name}
   name_add_mac_suffix: false
   project:
-    version: "2.0.0-jfg"
+    version: "4.0.1-jfg"
 
 number:
   - platform: template
